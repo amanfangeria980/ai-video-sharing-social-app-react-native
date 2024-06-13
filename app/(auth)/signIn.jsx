@@ -27,7 +27,7 @@ const signIn = () => {
       const result = await getCurrentUser();
       setUser(result);
       setIsLoggedIn(true);
-      Alert.alert("Sucess", "User signed in");
+      Alert.alert("Success", "User signed in");
       router.replace("/home");
     } catch (error) {
       Alert.alert("Error", error.message);
