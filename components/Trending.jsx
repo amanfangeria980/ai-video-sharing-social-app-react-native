@@ -8,12 +8,13 @@ import {
 import React, { useState } from "react";
 import * as Animatable from "react-native-animatable";
 import { icons } from "../constants";
+import { Video, ResizeMode } from "expo-av";
 const zoomIn = {
   0: {
     scale: 0.9,
   },
   1: {
-    scale: 1,
+    scale: 1.1,
   },
 };
 const zoomOut = {
@@ -34,7 +35,18 @@ const TrendingItem = ({ activeItem, item }) => {
       duration={500}
     >
       {play ? (
-        <Text>Playing</Text>
+        <Video
+          source={{ uri: item.video }}
+          className="h-52 w-72 rounded-[35px] mt-3 bg-white/10"
+          resizeMode={ResizeMode.CONTAIN}
+          useNativeControls
+          shouldPlay
+          onPlaybackStatusUpdate={(status) => {
+            if (status.didJustFinish) {
+              setPlay(false);
+            }
+          }}
+        />
       ) : (
         <TouchableOpacity
           className="relative justify-center items-center"
@@ -75,7 +87,7 @@ const Trending = ({ posts }) => {
       viewabilityConfig={{
         itemVisiblePercentThreshold: 70,
       }}
-      contentOffset={{ x: 170 }}
+      contentOffset={{ x: 145 }}
       horizontal
     />
   );
