@@ -20,7 +20,7 @@ const useAppwrite = (func) => {
     fetchData();
   }, []);
 
-  //   console.log(data);
+  // console.log("------------useAppwrite.jsx-----------------",data);
   const refetch = () => fetchData();
 
   return { data, isLoading, refetch };
