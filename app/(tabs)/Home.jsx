@@ -15,6 +15,7 @@ import EmptyState from "../../components/EmptyState";
 import { getAllPosts, getLatestPosts } from "../../lib/appwrite";
 import useAppwrite from "../../lib/useAppwrite";
 import VideoCard from "../../components/VideoCard";
+import { useGlobalContext } from "../../context/GlobalProvider";
 const home = () => {
   const { data: posts, refetch, isLoading } = useAppwrite(getAllPosts);
   // console.log("----------------home.jsx-------------", posts);
@@ -27,6 +28,8 @@ const home = () => {
     await refetch();
     setRefreshing(false);
   };
+
+  const { user } = useGlobalContext();
   return (
     <SafeAreaView className="bg-primary h-full">
       <FlatList
@@ -42,7 +45,7 @@ const home = () => {
                   Welcome Back
                 </Text>
                 <Text className="text-2xl font-psemibold text-white">
-                  AmanFang
+                  {user?.username}
                 </Text>
               </View>
               <View className="mt-1.5">
