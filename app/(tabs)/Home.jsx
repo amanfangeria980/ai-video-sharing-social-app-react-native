@@ -55,7 +55,7 @@ const home = () => {
             </View>
 
             {/* search component */}
-            <SearchInput placeholder="Search for a video topic" />
+            <SearchInput />
 
             <View className="w-full flex-1 pt-5 pb-8">
               <Text className="text-white text-lg font-psemibold ">
